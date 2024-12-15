@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WEBAPLICATION1.Controllers;
 
 [ApiController]
-[Route("api")]
+[Route("api/[controller]")]
 public class TrabajadorController : ControllerBase
 {
     [HttpGet]
@@ -13,5 +13,4 @@ public class TrabajadorController : ControllerBase
     {
         return TrabajadorDataStore.Current.Trabajadores;
     }
-        //y aca el controlador, ya mas nada UwU
 }

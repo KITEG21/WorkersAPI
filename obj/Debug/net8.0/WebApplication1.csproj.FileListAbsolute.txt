@@ -31,3 +31,4 @@ C:\Users\Usuario\Documents\Backend\API\WebApplication1\obj\Debug\net8.0\refint\W
 C:\Users\Usuario\Documents\Backend\API\WebApplication1\obj\Debug\net8.0\WebApplication1.pdb
 C:\Users\Usuario\Documents\Backend\API\WebApplication1\obj\Debug\net8.0\WebApplication1.genruntimeconfig.cache
 C:\Users\Usuario\Documents\Backend\API\WebApplication1\obj\Debug\net8.0\ref\WebApplication1.dll
+C:\Users\Usuario\Documents\Backend\API\WebApplication1\obj\Debug\net8.0\WebApplication1.sourcelink.json
