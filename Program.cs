@@ -18,7 +18,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.MapControllers();
 
 //app.MapGet("/hola", () => "Hello");     
 

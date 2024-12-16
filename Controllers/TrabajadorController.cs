@@ -11,6 +11,74 @@ public class TrabajadorController : ControllerBase
     [HttpGet]
     public ActionResult<IEnumerable<Trabajador>> GetTrabajadores()
     {
-        return TrabajadorDataStore.Current.Trabajadores;
+        return Ok(TrabajadorDataStore.Current.Trabajadores);
     }
+
+    [HttpGet("{trabajadorId}")]
+    public ActionResult<Trabajador> GetTrabajador(int trabajadorId)
+    {
+        var trabajador = TrabajadorDataStore.Current.Trabajadores.FirstOrDefault(x=> x.ID == trabajadorId);
+
+        if(trabajador == null)
+            return NotFound("El trabajador requerido no existe");
+    
+        return Ok(trabajador);
+    }
+
+    [HttpPost]
+    public ActionResult<Trabajador> PostTrabajador(TrabadorInsert trabadorInsert)
+    {
+        var maxTrabajadorId = TrabajadorDataStore.Current.Trabajadores.Max(x => x.ID);
+
+        var TrabajadorNuevo = new Trabajador()
+        {
+            Name = trabadorInsert.Name,
+            ID = maxTrabajadorId+1,
+            Age = trabadorInsert.Age  
+        };
+
+        TrabajadorDataStore.Current.Trabajadores.Add(TrabajadorNuevo);
+
+        return CreatedAtAction(nameof(GetTrabajador),
+            new {trabajadorId = TrabajadorNuevo.ID},
+            TrabajadorNuevo
+        );
+    }
+
+    [HttpPut("{trabajadorId}")]
+    public ActionResult<Trabajador> PutTrabajador(int trabajadorId, TrabadorInsert trabadorInsert)
+    {
+        var trabajador = TrabajadorDataStore.Current.Trabajadores.FirstOrDefault(x=> x.ID == trabajadorId);
+
+        if(trabajador == null)
+        {
+            return NotFound("El trabajador solicitado no existe");
+        }
+
+        trabajador.Name = trabadorInsert.Name;
+        trabajador.Age = trabadorInsert.Age;
+
+        return NoContent();
+
+    }
+
+    [HttpDelete("{trabajadorId}")]
+    public ActionResult<Trabajador> DeleteTrabajador(int trabajadorId)
+    {
+        var trabajador = TrabajadorDataStore.Current.Trabajadores.FirstOrDefault(x=> x.ID == trabajadorId);
+
+        if(trabajador == null)
+        {
+            return NotFound("El trabajador solicitado no existe");
+        }
+
+        TrabajadorDataStore.Current.Trabajadores.Remove(trabajador);
+        return Ok();
+
+    }
+
+
+
+
+
 }

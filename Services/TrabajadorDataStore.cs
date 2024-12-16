@@ -16,7 +16,7 @@ public class TrabajadorDataStore
             
             //Trabajador #1                         
             new Trabajador(){
-                ID = 0503,
+                ID = 1,
                 Name = "Luis Alberto",
                 Age = 23,
                 //Lista de habilidades
@@ -35,17 +35,17 @@ public class TrabajadorDataStore
 
             },
             new Trabajador(){
-                ID = 0915,
+                ID = 2,
                 Name = "Elier Diaz",
                 Age = 19,
                 Habilidades = new List<Habilidad>(){
                     new Habilidad(){
-                        ID = 02,
+                        ID = 03,
                         Name = "Atleta",
                         Destreza = Habilidad.EDestreza.Perfecto
                     },
                     new Habilidad(){
-                        ID = 05,
+                        ID = 04,
                         Name = "Discurso",
                         Destreza = Habilidad.EDestreza.Mediano
                     }
