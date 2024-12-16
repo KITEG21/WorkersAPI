@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WEBAPLICATION1.Helpers;
 using WEBAPLICATION1.Models;
 using WEBAPLICATION1.Services;
 
@@ -15,7 +16,7 @@ public class HabilidadController : ControllerBase
 
         if(trabajador == null)
         {
-            return NotFound("El trabajador solicitado no existe");
+            return NotFound(Mensajes.Trabajador.trabajadorNotFound);
         }
 
         return Ok(trabajador.Habilidades);
@@ -27,13 +28,13 @@ public class HabilidadController : ControllerBase
         var trabajador = TrabajadorDataStore.Current.Trabajadores.FirstOrDefault(x=> x.ID == trabajadorId);
   
         if(trabajador == null){
-            return NotFound("El trabajador solicitado no existe");
+            return NotFound(Mensajes.Trabajador.trabajadorNotFound);
         }
             
         var habilidad = trabajador.Habilidades?.FirstOrDefault(h=> h.ID == habilidadId);
 
         if(habilidad == null){
-            return NotFound("La habilidad solicitada no existe");            
+            return NotFound(Mensajes.Habilidad.habilidadNotFound);            
         }
 
         return Ok(habilidad);
@@ -46,14 +47,14 @@ public class HabilidadController : ControllerBase
         var trabajador = TrabajadorDataStore.Current.Trabajadores.FirstOrDefault(x=> x.ID == trabajadorId);
   
         if(trabajador == null){
-            return NotFound("El trabajador solicitado no existe");
+            return NotFound(Mensajes.Trabajador.trabajadorNotFound);
         }
 
         var habilidadExistente = trabajador.Habilidades.FirstOrDefault(h => h.Name == habilidadInsert.Name);
         
         if(habilidadExistente != null)
         {
-            return BadRequest("Ya existe una habilidad con el mismo nombre");
+            return BadRequest(Mensajes.Habilidad.habilidadExistente);
         }
 
         var maxHabilidadId = trabajador.Habilidades.Max(h=> h.ID);
@@ -82,14 +83,14 @@ public class HabilidadController : ControllerBase
 
         if(trabajador == null)
         {
-            return NotFound("El trabajador solicitado no existe");
+            return NotFound(Mensajes.Trabajador.trabajadorNotFound);
         }
     
         var habilidad = trabajador.Habilidades.FirstOrDefault(h=> h.ID == habilidadId);
 
         if(habilidad == null)
         {
-            return NotFound("La habilidad solicitada no existe");
+            return NotFound(Mensajes.Habilidad.habilidadNotFound);
         }
 
         habilidad.Name = habilidadInsert.Name;
@@ -106,17 +107,17 @@ public class HabilidadController : ControllerBase
 
         if(trabajador == null)
         {
-            return NotFound("El trabajador solicitado no existe");
+            return NotFound(Mensajes.Trabajador.trabajadorNotFound);
         }
 
         var habilidad = trabajador.Habilidades.FirstOrDefault(h => h.ID == habilidadId);
         
         if(habilidad == null)
         {
-            return NotFound("La habilidad solicitada no existe");
+            return NotFound(Mensajes.Habilidad.habilidadNotFound);
         }
 
-        trabajador.Habilidades.Remove(habilidad);
+        trabajador.Habilidades?.Remove(habilidad);
         return Ok();
 
     }

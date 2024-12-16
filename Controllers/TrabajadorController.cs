@@ -1,6 +1,7 @@
 using WEBAPLICATION1.Models;
 using WEBAPLICATION1.Services;
 using Microsoft.AspNetCore.Mvc;
+using WEBAPLICATION1.Helpers;
 
 namespace WEBAPLICATION1.Controllers;
 
@@ -20,7 +21,7 @@ public class TrabajadorController : ControllerBase
         var trabajador = TrabajadorDataStore.Current.Trabajadores.FirstOrDefault(x=> x.ID == trabajadorId);
 
         if(trabajador == null)
-            return NotFound("El trabajador requerido no existe");
+            return NotFound(Mensajes.Trabajador.trabajadorNotFound);
     
         return Ok(trabajador);
     }
@@ -52,7 +53,7 @@ public class TrabajadorController : ControllerBase
 
         if(trabajador == null)
         {
-            return NotFound("El trabajador solicitado no existe");
+            return NotFound(Mensajes.Trabajador.trabajadorNotFound);
         }
 
         trabajador.Name = trabadorInsert.Name;
@@ -69,7 +70,7 @@ public class TrabajadorController : ControllerBase
 
         if(trabajador == null)
         {
-            return NotFound("El trabajador solicitado no existe");
+            return NotFound(Mensajes.Trabajador.trabajadorNotFound);
         }
 
         TrabajadorDataStore.Current.Trabajadores.Remove(trabajador);
